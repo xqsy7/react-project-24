@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 export const ShopStyle = styled.div`
     width:100%;
-    height:100;
     background:#fff;
+    padding-top:1rem;
     .shop{
         width:100%;
         height:6rem;
@@ -109,5 +109,65 @@ export const ShopStyle = styled.div`
             background:#fff;
             display:block;
         }
+    }
+    .shoppingCar{
+        position:fixed;
+        bottom:0;
+        height:1.15rem;
+        background:#fff;
+        width:100%;
+        .noShop{
+            width:96%;
+            margin:.1rem auto 0;
+            height:.8rem;
+            line-height:.8rem;
+            text-align:center;
+            background:#ffd900;
+            color:#fff;
+            font-size: .3rem;
+            font-weight: 700;
+            border-radius: .1rem;
+        }
+        .getShop{
+            height:100%;
+            display:flex;
+            position:relative;
+            align-items:center;
+            i{
+                display:block;
+                width:1rem;
+                height:.88rem;
+                color:#ccc;
+                text-align:center;
+                line-height:.88rem;
+                font-size:.4rem;
+            }
+            .getNow{
+                width: 3rem;
+                height: .81rem;
+                font-size: .3rem;
+                font-weight: 700;
+                border-radius: .1rem;
+                line-height:.81rem;
+                text-align:center;
+                margin-left:.2rem;
+                border:1px solid #e0e0e0;
+                background-image: linear-gradient(#fff,#fcfcfc);
+                color: #8c8c8c;
+            }
+            .getCar{
+                width: 3rem;
+                height: .81rem;
+                font-size: .3rem;
+                font-weight: 700;
+                border-radius: .1rem;
+                line-height:.81rem;
+                text-align:center;
+                margin-left:.2rem;
+                border:1px solid #3f6aec;
+                background: linear-gradient(#6e98f4,#4b77ee);
+                color: #fff;
+            }
+       }
     }
 `

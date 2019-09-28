@@ -2,13 +2,19 @@ import styled from "styled-components";
 
 export const DetailStyle = styled.div`
     width:100%;
-    height:100%;
+    position:absolute;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
     background:#f5f5f5;
     padding-top:1rem;
     .ulList{
         width:100%;
         height:1rem;
         padding:0 .2rem;
+        position:fixed;
+        background:#fff;
         display:flex;
         justify-content:space-around;
         align-items:center;

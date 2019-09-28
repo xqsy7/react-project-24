@@ -4,6 +4,7 @@ import Shop from "@components/details/shop";
 import url from "url";
 import {DetailsClass} from "@api/details"
 import {DetailStyle} from "./detailStyle";
+import Observer from "@/observer";
 class Details extends Component {
     constructor(props) {
         super(props);
@@ -12,7 +13,7 @@ class Details extends Component {
             name:"",
             shopList:{}
         }
-        
+        this.clickHandler = this.clickHandler.bind();
     }
     render() {
         console.log(this.props.location)
@@ -24,7 +25,7 @@ class Details extends Component {
                 <ul className="ulList">
                     {
                         headList.map((item, index) => (
-                            <li key={index}>
+                            <li key={index} onClick = {this.clickHandler}>
                                 {item}
                             </li>
                         ))
@@ -44,6 +45,14 @@ class Details extends Component {
             shopList:data.data.list[0]
         })
        }
+
+
+       Observer.$on("getTopHandler",(top)=>{
+           console.log(top);
+       })
+    }
+    clickHandler(e){
+        Observer.$emit("getClickHandler");
     }
 }
 
