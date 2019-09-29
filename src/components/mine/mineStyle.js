@@ -16,22 +16,42 @@ export const MineStyle = styled.div`
             margin-left:.2rem;
             display:flex;
             align-items:center;
-            span{
-                color:#333;
-                font-size:.34rem;
-                margin-left:.3rem;
+            position:relative;
+            input{
+                opacity:0;
+                position:absolute;
+                width:1.5rem;
+                height:1.73rem;
+                left:0;
+                z-index:1;
             }
-            img{
+            .img{
+                position:absolute;
+                left:0;
+                img{
                 width:1.12rem;
                 height:1.12rem;
                 border-radius:50%;
             }
-            i{
+           
+            }
+            .input{
+                position:relative;
+                width:78%;
+                left:22%;
+                span{
                 position:absolute;
-                right:.3rem;
+                color:#333;
+                font-size:.34rem;
+                }
+                i{
+                position:absolute;
+                right:.5rem;
                 font-size:.2rem;
                 color:#ccc;
             }
+        }
+            
         }
         ul{
             position:relative;

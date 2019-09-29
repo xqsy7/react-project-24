@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { MineStyle } from "./mineStyle";
+import connect from "./connet";
+@connect
 class MineBody extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             order: [{
                 name: "全部订单",
@@ -22,6 +24,7 @@ class MineBody extends Component {
             problem: ["常见问题", "服务支持"],
             serve: ["意外碎屏保修服务", "延长保修服务"]
         }
+        this.clickHandler = this.clickHandler.bind(this);
     }
     render() {
         let { order, address, problem, serve } = this.state;
@@ -30,9 +33,14 @@ class MineBody extends Component {
                 <div id="mineBody">
                     <div className="mineBody-Head">
                         <div>
-                            <img src="./img/default-user-avatar.png" alt="" />
-                            <span>登录/注册</span>
-                            <i className="iconfont">&#xe617;</i>
+                            <div className="img">
+                                <img src={this.props.userPic} alt="头像"/>
+                            </div>
+                            <input type="file" ref="userPic" onChange={this.props.fileHandler.bind(this)}/>
+                            <div className="input" onClick={this.clickHandler}>
+                                <span>{this.props.userId?this.props.userId:"登录/注册"}</span>
+                                <i className="iconfont">&#xe617;</i>
+                            </div>
                         </div>
                         <ul>
                             {
@@ -88,6 +96,9 @@ class MineBody extends Component {
                 </div>
             </MineStyle>
         )
+    }
+    clickHandler(){
+        this.props.props.history.push("/modifyMine");
     }
 }
 

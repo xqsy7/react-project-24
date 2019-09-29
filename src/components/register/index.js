@@ -1,7 +1,8 @@
 import React,{Component} from "react";
 import {RegisterStyle} from "./styled";
 import {Link} from "react-router-dom";
-import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
+import {registerApi} from "@api/login";
+import { Toast } from 'antd-mobile';
 class Body extends Component{
     constructor(){
         super();
@@ -13,17 +14,17 @@ class Body extends Component{
         this.writeHandler = this.writeHandler.bind(this);
         this.clickBacHandler = this.clickBacHandler.bind(this);
         this.postUserHandler = this.postUserHandler.bind(this);
-        this.changeHandler = this.changeHandler.bind(this);
     }
     render(){
+        let {userId,password} = this.state;
         return (
             <RegisterStyle>
                 <form action="" onSubmit={this.postUserHandler}>
                     <div className="phone">
-                        <input type="text" placeholder="用户名" onFocus={this.writeHandler} value={userId} onChange={this.changeHandler}/>
+                        <input type="text" placeholder="用户名" onFocus={this.writeHandler} value={userId} onChange={this.changeHandler.bind(this,1)}/>
                     </div>
                     <div className="password">
-                        <input type="password" placeholder="密码" onFocus={this.writeHandler} value={password} onChange={this.changeHandler}/>
+                        <input type="password" placeholder="密码" onFocus={this.writeHandler} value={password} onChange={this.changeHandler.bind(this,2)}/>
                     </div>
                     <div className="checkbox">
                         <div onClick={this.clickBacHandler}><span>
@@ -50,11 +51,6 @@ class Body extends Component{
                     </p>
                     </div>
                 </form>
-                <WingBlank>
-                    <WhiteSpace />
-                    <Button onClick={showToast}>text only</Button>
-                    <WhiteSpace />
-                </WingBlank>
             </RegisterStyle>
         )
     }
@@ -71,18 +67,43 @@ class Body extends Component{
             flag:!this.state.flag
         })
     }
-    changeHandler(){
+    changeHandler(num,e){
+        let val = e.target.value
+        if(num===1){
+            this.setState({
+                userId:val,
+            })
+        }else{
+            this.setState({
+                password:val,
+            }) 
+        }
         
     }
-    postUserHandler(e){
+    async postUserHandler(e){
         e.preventDefault();
-
+        if(!this.state.flag){
+            let data = await registerApi(this.state.userId,this.state.password);
+            console.log(data);
+            if(data.data.code===1){
+                successToast();
+                this.props.props.history.push("/home");
+            }
+        }else{
+            offline();
+        }
+        
     }
     
 }
 
-function showToast() {
-    Toast.info('This is a toast tips !!!', 1);
+
+function successToast() {
+  Toast.success('恭喜您！注册成功', 1);
+}
+
+function offline() {
+  Toast.offline('请阅读并遵守法律声明和隐私条款 !!!', 2);
 }
 
 export default Body;

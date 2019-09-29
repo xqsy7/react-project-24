@@ -5,8 +5,8 @@ class Register extends Component{
     render(){
         return (
             <div>
-            <HeadLogin name="注册 Smartison ID"/>
-            <Body/>
+            <HeadLogin name="注册 Smartison ID" />
+            <Body props = {this.props}/>
             Register 
             </div>
         )

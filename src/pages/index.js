@@ -36,6 +36,11 @@ const Details = Loadable({
     loading:Loading
 })
 
+const ModifyMine = Loadable({
+    loader:()=>import("@components/mine/modify"),
+    loading:Loading
+})
+
 export {
     ShoppingCar,
     Classification,
@@ -43,5 +48,6 @@ export {
     Login,
     Mine,
     Home,
-    Details
+    Details,
+    ModifyMine
 }

@@ -1,24 +1,29 @@
 import React,{Component} from "react";
 import {BodyStyle} from "./styled/BodyStyle";
 import {Link} from "react-router-dom";
+import connect from "./connect";
+@connect
 class Body extends Component{
     constructor(){
         super();
         this.state = {
             flag:false,
+            userId:"",
+            password:""
         }
         this.writeHandler = this.writeHandler.bind(this);
         this.clickBacHandler = this.clickBacHandler.bind(this);
     }
     render(){
+        let {userId,password} = this.state;
         return (
             <BodyStyle>
-                <form action="">
+                <form action="" onSubmit={this.props.loginHandler.bind(this,userId,password)}>
                     <div className="phone">
-                        <input type="text" placeholder="手机号/邮箱" onFocus={this.writeHandler}/>
+                        <input type="text" placeholder="手机号/邮箱" onFocus={this.writeHandler} value={userId} onChange={this.changeHandler.bind(this,1)}/>
                     </div>
                     <div className="password">
-                        <input type="password" placeholder="密码" onFocus={this.writeHandler}/>
+                        <input type="password" placeholder="密码" onFocus={this.writeHandler} value={password} onChange={this.changeHandler.bind(this,2)}/>
                     </div>
                     <div className="checkbox">
                         <div onClick={this.clickBacHandler}><span>
@@ -62,6 +67,18 @@ class Body extends Component{
         this.setState({
             flag:!this.state.flag
         })
+    }
+    changeHandler(num,e){
+        let val = e.target.value;
+        if(num===1){
+            this.setState({
+                userId:val
+            })
+        }else{
+            this.setState({
+                password:val
+            })
+        }
     }
 }
 
